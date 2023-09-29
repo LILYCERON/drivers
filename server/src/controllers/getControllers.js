@@ -48,7 +48,25 @@ const getAllDrivers= async (req, res) => {
     }
 }
 
+const getForTeam = async (req, res) => {
+
+    try {
+        const allInfo = await axios("http://localhost:5000/drivers")
+
+        const drivers = allInfo.data
+
+        const teams = [];
+        drivers.map((obj) => teams.push(obj.teams))
+        res.send(teams)
+
+    } catch (error) {
+        res.send(error.message, error)
+
+    }
+}
+
 module.exports ={
     getDriverForID,
-    getAllDrivers
+    getAllDrivers,
+    getForTeam
 }

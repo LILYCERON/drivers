@@ -1,12 +1,11 @@
-const Driver = require("../models/Driver");
-const Teams = require("../models/Teams");
+const{Driver, Teams}= require("../db")
 
-const createDriverDB = async (forename, surname, id, team, image) => {
-    const newDriver = await Driver.create({forename, surname, id, team, image})
+const createDriverDB = async (forename, surname, id, team, image, description, nationality, birth_date) => {
+    const newDriver = await Driver.create({forename, surname, id, team, image, description, nationality, birth_date})
     let driverDb = await Teams.findAll({
-        where: { DriverTeams },
+        where: { name: team },
       });
-      newDriver.addType(driverDb);
+      newDriver.addTeams(driverDb);
     return newDriver;
 }
 
