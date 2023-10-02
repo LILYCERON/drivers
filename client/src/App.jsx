@@ -1,8 +1,8 @@
 import{Route, BrowserRouter, Switch} from 'react-router-dom'
-import Landing from "./redux/pages/Landig"
-import Detail from "./redux/pages/Detail"
-import Home from "./redux/pages/home"
-import create from "./redux/pages/create"
+import Landing from "./pages/Landig"
+import Detail from "./pages/Detail"
+import Home from "./pages/home"
+import create from "./pages/create"
 import './App.css'
 
 function App() {
