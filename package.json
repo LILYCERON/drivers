@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mongous": "^0.2.7",
+    "nodemon": "^3.0.1",
+    "react": "^18.2.0",
+    "react-router-dom": "^6.16.0",
+    "redux": "^4.0.5",
+    "tools": "^0.0.0"
+  }
+}

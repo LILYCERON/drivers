@@ -1,19 +1,19 @@
-import{Route, BrowserRouter, Switch} from 'react-router-dom'
-import Landing from "./pages/Landig"
+import { Route, BrowserRouter, Routes } from 'react-router-dom'
+import Landing from "./pages/landing/Landig"
 import Detail from "./pages/Detail"
-import Home from "./pages/home"
-import create from "./pages/create"
+import Home from "./pages/Home/home"
+import Create from "./pages/create"
 import './App.css'
 
 function App() {
   return (
     <BrowserRouter>
-    <Switch>
-      <Route exact path = "/" component = {Landing}/>
-      <Route exact path= "/home" component = {Home}/>
-      <Route path= "/home/:id" component = {Detail}/>
-      <Route path= "/create" component = {create}/>
-    </Switch>
+      <Routes>
+        <Route exact path="/" element={<Landing />} />
+        <Route exact path="/home" element={<Home />} />
+        <Route path="/home/:id" element={<Detail />} />
+        <Route path="/create" element={<Create />} />
+      </Routes>
     </BrowserRouter>
   );
 }

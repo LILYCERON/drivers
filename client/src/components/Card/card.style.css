@@ -1,0 +1,13 @@
+.card{
+display:flex;
+flex-direction:column;
+color: blue;
+padding: 15px;
+margin: 25px;
+background-color: aliceblue;
+}
+
+button{
+    background-color:blueviolet;
+    border-color: black;
+}

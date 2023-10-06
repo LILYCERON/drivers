@@ -1,11 +1,13 @@
-const {createDriverDB} = require("../controllers/createControl");
+const { createDriverDB } = require("../controllers/createControl");
 
 const postControllers = async (req, res) => {
+    
     const { forename, surname, id, team, image, description, nationality, birth_date } = req.body
 
-    if (forename.length < 21 && surname.length < 21) {
+    try {
 
-        try {
+        if (forename.length < 21 && surname.length < 21 && description.length < 100) {
+
             const response = await
                 createDriverDB(
                     forename,
@@ -16,16 +18,19 @@ const postControllers = async (req, res) => {
                     description,
                     nationality,
                     birth_date)
-
             res.json(response)
-        } catch (error) {
-            res.status(404).send(error.message)
+        }else {
+        res.send("Uno de los datos ingresados no cumple las condiciones solicitadas")}
+
+        if(forename === undefined || surname === undefined || team === undefined || birth_date === undefined){
+            
+            res.send("Algunos de los valores enviados son indefinidos")
         }
-    } else {
-        res.send("Los datos ingresados no cumplen las condiciones mencionadas debajo de cada recuadro")
+    } catch (error) {
+        res.status(404).send(error.message)
     }
 }
 
-module.exports={
+module.exports = {
     postControllers
 }

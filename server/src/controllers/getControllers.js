@@ -1,9 +1,36 @@
 const axios = require('axios')
 
+const getForTeam = async (req, res) => {
+
+    try{
+        const allInfo = await axios("http://localhost:5000/drivers")
+
+        const drivers = allInfo.data
+
+        const teams = [];
+        drivers.map((obj) => {
+            if(obj.teams !== undefined || null){
+                teams.push((obj.teams.split(",")))
+            }
+        })
+        const onlyTeams = teams.flat(Infinity)
+        const cleanTeams = onlyTeams.map((str) => str.trim())
+        const uniTeams = [... new Set(cleanTeams)]
+        res.send(uniTeams)
+
+    }catch(error){
+        
+        res.status(404).send(error.message)  
+    }
+}
 const getDriverForID = async(req, res) => {
 
     const { id } = req.params
     const idDriver = parseInt(id);
+
+    if(id.length === 0){
+        res.send("Dato ingresado es indefinido. EL detalle de busqueda es tipo nùmero")
+    }
 
     if (idDriver < 508 && Number(idDriver)) {
         const allInfo = await axios(`http://localhost:5000/drivers/${idDriver}`).then(
@@ -18,7 +45,6 @@ const getAllDrivers= async (req, res) => {
 
     const { name } = req.query
     
-    console.log(typeof name)
     try {
         
         const allInfo = await axios("http://localhost:5000/drivers");
@@ -29,7 +55,7 @@ const getAllDrivers= async (req, res) => {
             if (name.length < 20){
                 const searchName = name.toLowerCase()
                 const similarToSearch = infoDrivers.filter((obj) =>
-                    ((obj.name.forename).includes(searchName) || (obj.name.surname).includes(searchName)));
+                    ((obj.name.forename).toLowerCase() + " " + (obj.name.surname).toLowerCase()).includes(searchName));
 
                 if (similarToSearch.length > 0) {
                     res.send(similarToSearch.slice(0, 16))
@@ -48,22 +74,7 @@ const getAllDrivers= async (req, res) => {
     }
 }
 
-const getForTeam = async (req, res) => {
 
-    try {
-        const allInfo = await axios("http://localhost:5000/drivers")
-
-        const drivers = allInfo.data
-
-        const teams = [];
-        drivers.map((obj) => teams.push(obj.teams))
-        res.send(teams)
-
-    } catch (error) {
-        res.send(error.message, error)
-
-    }
-}
 
 module.exports ={
     getDriverForID,
