@@ -1,0 +1,12 @@
+.div{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px , 17px, 5px, 10px;
+    justify-content: center;
+    align-content: space-between;
+    
+}
+
+.button{ color: red;
+   
+}

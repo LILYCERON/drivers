@@ -13,6 +13,7 @@ function Detail() {
 
     return (
         <div>
+            <a href="/home">Regresar al Home</a>
             <p>Referencia del conductor: {detailDriver.driverRef}</p>
             <p>nacionalidad: {detailDriver.nationality}</p>
             <text>Descripción: {detailDriver.description}</text>

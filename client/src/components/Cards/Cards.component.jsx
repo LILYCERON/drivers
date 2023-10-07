@@ -5,17 +5,16 @@ import React, { useEffect } from "react";
 import Card from "../Card/Card.component";
 import "./cards.style.css"
 
-function Cards(){
- 
-    const allDrivers = useSelector((state) => state.allDrivers)
-    return(
+function Cards({allDrivers}) {
+    return (
         <div className="cards">
-            {allDrivers.map((driver)=> {
-                const name = driver.name.forename +" "+driver.name.surname
+            {allDrivers.map((driver) => {
+                const name = driver.name.forename + " " + driver.name.surname
                 const image = driver.image.url
-                const teams= driver.teams
+                const teams = driver.teams
                 const id = parseInt(driver.id)
-                return <Card  key={id} id={id} name={name} image={image} teams={teams}/>
+                const date = driver.dob
+                return <Card key={id} id={id} name={name} image={image} teams={teams} date={date} />
             })}
         </div>
     )
