@@ -22,12 +22,12 @@ const postControllers = async (req, res) => {
         }else {
         res.send("Uno de los datos ingresados no cumple las condiciones solicitadas")}
 
-        if(forename === undefined || surname === undefined || team === undefined || birth_date === undefined){
+        if(forename === "undefined" || surname === "undefined" || team === "undefined" || birth_date === "undefined"){
             
             res.send("Algunos de los valores enviados son indefinidos")
         }
     } catch (error) {
-        res.status(404).send(error.message)
+        res.status(404).send(error)
     }
 }
 

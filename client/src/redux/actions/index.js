@@ -9,6 +9,7 @@ export const GET_TEAMS_BY_FILTER = "GET_TEAMS_BY_FILTER"
 export const GET_AZ = "GET_AZ"
 export const GET_ZA = "GET_AZ"
 export const GET_DRIVER_DATE = "GET_DRIVER_DATE"
+export const CREATE_DRIVER ="CREATE_DRIVER"
 
 export function getAllDrivers() {
     return async function (dispatch) {
@@ -19,7 +20,6 @@ export function getAllDrivers() {
         })
     }
 }
-
 
 export function getAllTeams() {
     return async function (dispatch) {
@@ -34,6 +34,7 @@ export function getAllTeams() {
 export function getDriverByid(id) {
     return async function (dispatch) {
         const response = await axios.get(`http://localhost:3001/drivers/${id}`);
+        
         return dispatch({
             type: GET_DRIVER_BY_ID,
             payload: response.data
@@ -42,7 +43,6 @@ export function getDriverByid(id) {
 }
 
 export function getDriversName(search) {
-    console.log(search)
     return async function (dispatch) {
         const response = await axios.get(`http://localhost:3001/drivers?name=${search}`);
         console.log(response.data)
@@ -53,11 +53,26 @@ export function getDriversName(search) {
     }
 }
 
+export function createDriver(form) {
+    return async function (dispatch) {
+        try {
+            console.log('form', form)
+            const response = await axios.post(`http://localhost:3001/drivers`, form);
+        alert("your driver has been created ")
+        return dispatch({
+            type: CREATE_DRIVER,
+            payload: response.data
+        })
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+}
+
 export function getTeamsByfilter(teamFilter) {
     return async function (dispatch) {
-        const response = await axios.get(`http://localhost:3001/drivers`);
+        const response = await axios.get(`http://localhost:3001/teams`);
         const teamsFilter = response.data.map((obj) => obj.teams === teamFilter)
-        console.log(teamsFilter)
         return dispatch({
             type: GET_TEAMS_BY_FILTER,
             payload: teamsFilter,
@@ -123,3 +138,5 @@ export function inOrder(value) {
         }
     }
 }
+
+

@@ -7,6 +7,6 @@ driversRoute.get('/', getAllDrivers)
 
 driversRoute.get('/:id', getDriverForID)
 
-driversRoute.post('/drivers',postControllers )
+driversRoute.post('/',postControllers )
 
 module.exports = driversRoute;
