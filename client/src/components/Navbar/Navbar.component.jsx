@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { inOrder, getAllTeams, getTeamsByfilter, getDriversName, getAllDrivers, getDriverFordate} from "../../redux/actions";
+import { inOrder, getAllTeams, getDriversName, getAllDrivers, getDriverFordate, getDriverByTeam} from "../../redux/actions";
 import { useEffect, useState } from "react";
 function Navbar() {
     const dispatch = useDispatch();
@@ -53,7 +53,7 @@ function Navbar() {
     const onChangeFilterType = (event) => {
         event.preventDefault()
         const dataToFilter = event.target.value
-        dispatch(getTeamsByfilter(dataToFilter))
+        dispatch(getDriverByTeam(dataToFilter))
     }
 
     const changeInputSearch = (evento) => {
@@ -104,6 +104,7 @@ function Navbar() {
                     <input type="checkbox" name="filtrar por" value="Equipo" id="Equipo" onChange={handleOnCheckbox} />
                     <label for="Equipo">(Equipo)</label>
                 <select name="teams" value ="teams"id="teams" onChange={onChangeFilterType}>
+                
                     {teams.map((team) => {
                         return (
                             <option key={team} value={team}>

@@ -1,8 +1,8 @@
 
 //Declaramos el estado global
 
-import { GET_ALL_DRIVERS, GET_DRIVER_BY_ID, GET_ALL_TEAMS, GET_TEAMS_BY_FILTER, 
-    GET_AZ, GET_DRIVERS_NAME, GET_ZA, GET_DRIVER_DATE, CREATE_DRIVER } from "../actions";
+import { GET_ALL_DRIVERS, GET_DRIVER_BY_ID, GET_ALL_TEAMS, 
+    GET_AZ, GET_DRIVERS_NAME, GET_ZA, GET_DRIVER_DATE, CREATE_DRIVER, GET_DRIVER_BY_TEAM } from "../actions";
 
 let inicialState = {
     allDrivers: [], //Llegarán todos los conductores
@@ -34,7 +34,7 @@ function rootReducer(state = inicialState, action) {
                 ...state,
                 teams: action.payload,
             }
-        case GET_TEAMS_BY_FILTER:
+        case GET_DRIVER_BY_TEAM:
             return {
                 ...state,
                 allDrivers: action.payload,

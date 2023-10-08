@@ -1,4 +1,5 @@
 const axios = require('axios')
+const { Teams } = require('../db')
 
 const getForTeam = async (req, res) => {
 
@@ -16,6 +17,9 @@ const getForTeam = async (req, res) => {
         const onlyTeams = teams.flat(Infinity)
         const cleanTeams = onlyTeams.map((str) => str.trim())
         const uniTeams = [... new Set(cleanTeams)]
+        uniTeams.map((team) => {
+            Teams.findOrCreate({where: {name: team}})
+        })
         res.send(uniTeams)
 
     }catch(error){

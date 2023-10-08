@@ -5,7 +5,7 @@ export const GET_ALL_DRIVERS = "GET_ALL_DRIVERS";
 export const GET_DRIVERS_NAME = "GET_DRIVERS_NAME"
 export const GET_DRIVER_BY_ID = "GET_DRIVER_BY_ID"
 export const GET_ALL_TEAMS = "GET_ALL_TEAMS "
-export const GET_TEAMS_BY_FILTER = "GET_TEAMS_BY_FILTER"
+export const GET_DRIVER_BY_TEAM= "GET_DRIVER_BY_TEAM"
 export const GET_AZ = "GET_AZ"
 export const GET_ZA = "GET_AZ"
 export const GET_DRIVER_DATE = "GET_DRIVER_DATE"
@@ -69,12 +69,12 @@ export function createDriver(form) {
     }
 }
 
-export function getTeamsByfilter(teamFilter) {
+export function getDriverByTeam(teamFilter) {
     return async function (dispatch) {
-        const response = await axios.get(`http://localhost:3001/teams`);
+        const response = await axios.get(`http://localhost:3001/driver`);
         const teamsFilter = response.data.map((obj) => obj.teams === teamFilter)
         return dispatch({
-            type: GET_TEAMS_BY_FILTER,
+            type: GET_DRIVER_BY_TEAM,
             payload: teamsFilter,
         })
     }
