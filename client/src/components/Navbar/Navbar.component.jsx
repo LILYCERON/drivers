@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { inOrder, getAllTeams, getDriversName, getAllDrivers, getDriverFordate, getDriverByTeam} from "../../redux/actions";
+import { inOrder, getAllTeams, getDriversName, getAllDrivers, getDriverFordate, getDriverByTeam } from "../../redux/actions";
 import { useEffect, useState } from "react";
 function Navbar() {
     const dispatch = useDispatch();
     const allDrivers = useSelector((state) => state.allDrivers)
     const date = useSelector((state) => state.date)
-    const teams= useSelector((state) => state.teams)
+    const teams = useSelector((state) => state.teams)
 
 
     const [name, setName] = useState("")
@@ -22,14 +22,14 @@ function Navbar() {
     useEffect(() => { dispatch(getAllTeams()) }, [])
 
     const handleOnCheckbox = (e) => {
-        if(e.target.checked){
-            if(e.target.value === "az"){
+        if (e.target.checked) {
+            if (e.target.value === "az") {
                 dispatch(inOrder(e.target.value))
             }
-            if(e.target.value === "za"){
+            if (e.target.value === "za") {
                 dispatch(inOrder(e.target.value))
             }
-            if(e.target.value === "nacimiento"){
+            if (e.target.value === "nacimiento") {
                 alert("Desde fecha más reciente hasta la más antigua")
                 dispatch(inOrder(e.target.value))
             }
@@ -38,8 +38,8 @@ function Navbar() {
                 [e.target.value]: e.target.checked
             })
         }
-        if(!e.target.checked ){
-            if(e.target.value === "az" || e.target.value ==="za" || e.target.value === "nacimiento"){
+        if (!e.target.checked) {
+            if (e.target.value === "az" || e.target.value === "za" || e.target.value === "nacimiento") {
                 dispatch(getAllDrivers())
                 setSelectFilter({
                     ...selectFilter,
@@ -58,13 +58,20 @@ function Navbar() {
 
     const changeInputSearch = (evento) => {
         const stringSearch = evento.target.value
-        const differentCharacters = stringSearch.match(/[^A-Za-z\s]/);
 
-        if (differentCharacters !== null) {
-            alert(`caracter ${differentCharacters} no permitido, ingresa solo letras`)
-            evento.target.value = ""
+        if (evento.target.value.length < 23) {
+
+            const differentCharacters = stringSearch.match(/[^A-Za-z\s]/); //busca caracteres distintos a letras mayúsculas, minúsculas y espacios
+
+            if (differentCharacters !== null) {
+                alert(`${differentCharacters} it is not permitted, enter only letters (a-z)`)
+                e.target.value= name
+            }
+            setName(stringSearch)
+
+        }else{
+            alert("your search must be less than 23 characters")
         }
-        setName(stringSearch)
     }
 
     const handleSearch = (event) => {
@@ -73,10 +80,7 @@ function Navbar() {
         setName('')
 
     }
-    const onChangeFilterdate = (e) =>{
-        e.preventDefault()
-        dispatch(getDriverFordate)
-    }
+
 
     return (
         <div>
@@ -88,7 +92,7 @@ function Navbar() {
                 <div className="checkbox-container">
                     <h3>Filtrar por:</h3>
                     <div className="input-checkbox" />
-                    <hr/>
+                    <hr />
                     <input
                         type="checkbox" name="filtrar por" value="az" id="az" onChange={handleOnCheckbox} />
                     <label for="az">A-Z</label>
@@ -101,10 +105,10 @@ function Navbar() {
                     <input type="checkbox" name="filtrar por" value="nacimiento" id="nacimiento" onChange={handleOnCheckbox} />
                     <label for="nacimiento">Año de nacimiento</label>
                 </div>
-                    <input type="checkbox" name="filtrar por" value="Equipo" id="Equipo" onChange={handleOnCheckbox} />
-                    <label for="Equipo">(Equipo)</label>
-                <select name="teams" value ="teams"id="teams" onChange={onChangeFilterType}>
-                
+                <input type="checkbox" name="filtrar por" value="Equipo" id="Equipo" onChange={handleOnCheckbox} />
+                <label for="Equipo">(Equipo)</label>
+                <select name="teams" value="teams" id="teams" onChange={onChangeFilterType}>
+
                     {teams.map((team) => {
                         return (
                             <option key={team} value={team}>

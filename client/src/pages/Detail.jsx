@@ -14,12 +14,12 @@ function Detail() {
         <div>
             {infoDriver.image ? <>
                 <a href="/home">Regresar al Home</a>
-                <img src={`${infoDriver.image.url}` } style={{width:"300px", height:"300px"} }/>
+                <img src={`${infoDriver.image}` } style={{width:"300px", height:"300px"} }/>
                 <p>identificador: {infoDriver.id}</p>
-                <p>Nombre: {infoDriver.name.forename}</p>
-                <p>Apellido: {infoDriver.name.surname}</p>
+                <p>Nombre: {infoDriver.forename}</p>
+                <p>Apellido: {infoDriver.surname}</p>
                 <p>nacionalidad: {infoDriver.nationality}</p>
-                <p>nacimiento: {infoDriver.dob}</p>
+                <p>nacimiento: {infoDriver.birth_date}</p>
                 <p>Equipo: {infoDriver.teams}</p>
                 <text>Descripción: {infoDriver.description}</text>
             </> : <h1>Loading...</h1>}

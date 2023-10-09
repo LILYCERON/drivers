@@ -5,15 +5,16 @@ export const GET_ALL_DRIVERS = "GET_ALL_DRIVERS";
 export const GET_DRIVERS_NAME = "GET_DRIVERS_NAME"
 export const GET_DRIVER_BY_ID = "GET_DRIVER_BY_ID"
 export const GET_ALL_TEAMS = "GET_ALL_TEAMS "
-export const GET_DRIVER_BY_TEAM= "GET_DRIVER_BY_TEAM"
+export const GET_DRIVER_BY_TEAM = "GET_DRIVER_BY_TEAM"
 export const GET_AZ = "GET_AZ"
 export const GET_ZA = "GET_AZ"
 export const GET_DRIVER_DATE = "GET_DRIVER_DATE"
-export const CREATE_DRIVER ="CREATE_DRIVER"
+export const CREATE_DRIVER = "CREATE_DRIVER"
 
 export function getAllDrivers() {
     return async function (dispatch) {
         const response = await axios.get("http://localhost:3001/drivers");
+        console.log('response.data', response.data)
         return dispatch({
             type: GET_ALL_DRIVERS,
             payload: response.data
@@ -34,7 +35,7 @@ export function getAllTeams() {
 export function getDriverByid(id) {
     return async function (dispatch) {
         const response = await axios.get(`http://localhost:3001/drivers/${id}`);
-        
+
         return dispatch({
             type: GET_DRIVER_BY_ID,
             payload: response.data
@@ -42,14 +43,19 @@ export function getDriverByid(id) {
     }
 }
 
-export function getDriversName(search) {
+export function getDriversName(name) {
     return async function (dispatch) {
-        const response = await axios.get(`http://localhost:3001/drivers?name=${search}`);
-        console.log(response.data)
-        return dispatch({
-            type: GET_DRIVERS_NAME,
-            payload: response.data
-        })
+        try {
+            const response = await axios(`http://localhost:3001/drivers?name=${name}`)
+            return dispatch({
+                type: GET_DRIVERS_NAME,
+                payload: response.data
+            })
+
+        } catch (error) {
+            console.log('error.response.data', error.response.data)
+            alert(error.response.data)
+        }
     }
 }
 
@@ -57,11 +63,11 @@ export function createDriver(form) {
     return async function (dispatch) {
         try {
             const response = await axios.post(`http://localhost:3001/drivers`, form);
-        alert("your driver has been created ")
-        return dispatch({
-            type: CREATE_DRIVER,
-            payload: response.data
-        })
+            alert("your driver has been created ")
+            return dispatch({
+                type: CREATE_DRIVER,
+                payload: response.data
+            })
         } catch (error) {
             alert(error.message)
         }
@@ -82,7 +88,7 @@ export function getDriverFordate() {
     return async function (dispatch) {
         const response = await axios.get(`http://localhost:3001/drivers`);
         const dataFilter = response.data.map((obj) => obj.dob)
-        console.log("date",dataFilter)
+        console.log("date", dataFilter)
         return dispatch({
             type: GET_DRIVER_DATE,
             payload: dataFilter,
@@ -96,8 +102,8 @@ export function inOrder(value) {
 
         if (value === "az" || value === "za") {
             const driversAZ = response.data.sort((a, b) => {
-                const driverA = a.name.forename.toLowerCase(); // Convertir a minúsculas para asegurar la comparación insensible a mayúsculas
-                const driverB = b.name.forename.toLowerCase();
+                const driverA = a.forename.toLowerCase(); // Convertir a minúsculas para asegurar la comparación insensible a mayúsculas
+                const driverB = b.forename.toLowerCase();
                 if (driverA < driverB) {
                     return -1; // a debe aparecer antes que b
                 } else if (driverA > driverB) {

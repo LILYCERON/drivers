@@ -1,16 +1,17 @@
 const axios = require('axios')
-const { Teams } = require('../db')
+const { Driver, Teams } = require('../db')
+const { getInfoApi, getInfoDB, getInfoApiById } = require('../utils')
 
 const getForTeam = async (req, res) => {
 
-    try{
+    try {
         const allInfo = await axios("http://localhost:5000/drivers")
 
         const drivers = allInfo.data
 
         const teams = [];
         drivers.map((obj) => {
-            if(obj.teams !== undefined || null){
+            if (obj.teams !== undefined || null) {
                 teams.push((obj.teams.split(",")))
             }
         })
@@ -18,69 +19,88 @@ const getForTeam = async (req, res) => {
         const cleanTeams = onlyTeams.map((str) => str.trim())
         const uniTeams = [... new Set(cleanTeams)]
         uniTeams.map((team) => {
-            Teams.findOrCreate({where: {name: team}})
+            Teams.findOrCreate({ where: { name: team } })
         })
         res.send(uniTeams)
 
-    }catch(error){
+    } catch (error) {
+
+        res.status(404).send(error.message)
+    }
+}
+const getDriverForID = async (req, res) => {
+
+    try {
+        const { id } = req.params
+        console.log('id',typeof id)
         
-        res.status(404).send(error.message)  
+        const infoDriversDb = await getInfoDB()
+        
+        console.log('infoDriversDb', infoDriversDb)
+        
+        if (id.length === 0) {
+            throw "Dato ingresado es indefinido. EL detalle de busqueda es tipo nùmero"
+        }
+        
+        if (id < 508 && Number(id)) {
+            const idDriver = parseInt(id)
+            const infoDriversApi = await getInfoApiById(idDriver)
+            
+            res.status(200).send(infoDriversApi)
+            
+        } else if(id){
+            const filteredById = infoDriversDb.filter(driver => driver.id === id)
+            
+            res.status(200).send(filteredById[0])
+        } else {
+            throw "El id ingresado debe ser un número menor a 508"
+        }
+    } catch (error) {
+        res.status(404).send(error)
     }
+
+
 }
-const getDriverForID = async(req, res) => {
 
-    const { id } = req.params
-    const idDriver = parseInt(id);
-
-    if(id.length === 0){
-        res.send("Dato ingresado es indefinido. EL detalle de busqueda es tipo nùmero")
-    }
-
-    if (idDriver < 508 && Number(idDriver)) {
-        const allInfo = await axios(`http://localhost:5000/drivers/${idDriver}`).then(
-            (response) => res.send(response.data)
-        )
-    }else{
-        res.send("El id ingresado debe ser un número menor a 508")
-    }
-}
-
-const getAllDrivers= async (req, res) => {
+const getAllDrivers = async (req, res) => {
 
     const { name } = req.query
-    
+
     try {
-        
-        const allInfo = await axios("http://localhost:5000/drivers");
-        infoDrivers = allInfo.data
+
+        const infoDrivers = await getInfoApi()
+        const driverArrayDB = await getInfoDB()
+
+        const allDrivers = infoDrivers.concat(driverArrayDB)
 
         if (name !== undefined) {
 
-            if (name.length < 20){
+            if (name.length < 23) {
                 const searchName = name.toLowerCase()
-                const similarToSearch = infoDrivers.filter((obj) =>
-                    ((obj.name.forename).toLowerCase() + " " + (obj.name.surname).toLowerCase()).includes(searchName));
+                const similarToSearch = allDrivers.filter((obj) =>
+                    (obj.forename).toLowerCase().includes(searchName) || (obj.surname).toLowerCase().includes(searchName));
 
                 if (similarToSearch.length > 0) {
                     res.send(similarToSearch.slice(0, 16))
                 } else {
-                    res.send("No existen resultados para su búsqueda")
+                    throw "No existen resultados para su busqueda"
                 }
             } else {
-                res.send("Dato de búsqueda ingresado excede los 20 caracteres")
+                throw "Dato de búsqueda ingresado excede los 20 caracteres"
             }
         } else {
-
-            res.send(infoDrivers)
+            console.log(allDrivers)
+            res.json(allDrivers)
         }
     } catch (error) {
-        res.status(404).send(error.message)
+        console.log('error.message', error.message)
+        res.status(404).json(error)
     }
 }
 
 
 
-module.exports ={
+module.exports = {
     getDriverForID,
     getAllDrivers,
     getForTeam

@@ -6,7 +6,7 @@ const postControllers = async (req, res) => {
 
     try {
 
-        if ((forename.length < 12) && (surname.length < 12) && (description.length < 40)) {
+        if ((forename.length > 1 && forename.length < 12) && (surname.length > 1 && surname.length < 12) && (description.length < 150)) {
             const response = await
                 createDriverDB(
                     forename,
@@ -21,7 +21,7 @@ const postControllers = async (req, res) => {
         }else {
         res.send("Uno de los datos ingresados no cumple las condiciones solicitadas")}
 
-        if(forename === "undefined" || surname === "undefined" || team === "undefined" || birth_date === "undefined"){
+        if(forename === "" || surname === "" || team === "" || birth_date === ""){
             
             res.send("Algunos de los valores enviados son indefinidos")
         }

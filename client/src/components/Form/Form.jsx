@@ -15,7 +15,7 @@ function Form() {
             forename: "",
             surname: "",
             team: [],
-            image: "",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXbjDADpg95dAE9nmG_8onYdgVfkeDySCqpJmNNy5GiUTa-LS8zTXgg3q4CM0XB3UicC8&usqp=CAU",
             description: "",
             nationality: "",
             birth_date: "",
@@ -38,12 +38,11 @@ function Form() {
         if (array.some((value) => { value === "" })) {
             return alert("there are unfilled fields")
         }
-        console.log(array)
-        console.log(array.includes(""))
+    
         const infointheArray = array.filter((el) => el !== "")
         if (infointheArray.length > 1) {
             console.log('form.team', form.team)
-            if (form.team.length >= 1) {
+            if (form.team.length >= 1 && form.forename !== "" && form.birth_date !== "" ) {
                 dispatch(createDriver(form))
                 setfilteredTeams(teams)
                 setForm({
@@ -88,13 +87,13 @@ function Form() {
             }
         } else if (e.target.name === "description") {
 
-            if (e.target.value.length < 60) {
+            if (e.target.value.length < 150) {
                 setForm({
                     ...form,
                     [e.target.name]: e.target.value
                 })
             } else {
-                alert(`${e.target.name} should be minor to 60 characters`)
+                alert(`${e.target.name} should be minor to 150 characters`)
             }
 
         }

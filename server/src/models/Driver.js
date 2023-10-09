@@ -23,6 +23,7 @@ module.exports = (sequelize) => {
     },
     image: {
       type: DataTypes.STRING,
+      defaultValue: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXbjDADpg95dAE9nmG_8onYdgVfkeDySCqpJmNNy5GiUTa-LS8zTXgg3q4CM0XB3UicC8&usqp=CAU",
       allowNull: false
     },
     nationality: {
