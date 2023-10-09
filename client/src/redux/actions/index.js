@@ -56,7 +56,6 @@ export function getDriversName(search) {
 export function createDriver(form) {
     return async function (dispatch) {
         try {
-            console.log('form', form)
             const response = await axios.post(`http://localhost:3001/drivers`, form);
         alert("your driver has been created ")
         return dispatch({
@@ -97,8 +96,8 @@ export function inOrder(value) {
 
         if (value === "az" || value === "za") {
             const driversAZ = response.data.sort((a, b) => {
-                const driverA = a.name.forename.toLowerCase().normalize("NFD"); // Convertir a minúsculas para asegurar la comparación insensible a mayúsculas
-                const driverB = b.name.forename.toLowerCase().normalize("NFD");
+                const driverA = a.name.forename.toLowerCase(); // Convertir a minúsculas para asegurar la comparación insensible a mayúsculas
+                const driverB = b.name.forename.toLowerCase();
                 if (driverA < driverB) {
                     return -1; // a debe aparecer antes que b
                 } else if (driverA > driverB) {

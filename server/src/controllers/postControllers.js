@@ -6,8 +6,7 @@ const postControllers = async (req, res) => {
 
     try {
 
-        if (forename.length < 21 && surname.length < 21 && description.length < 100) {
-
+        if ((forename.length < 12) && (surname.length < 12) && (description.length < 40)) {
             const response = await
                 createDriverDB(
                     forename,

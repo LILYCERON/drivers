@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 function Form() {
     const dispatch = useDispatch()
     const teams = useSelector((state) => state.teams)
-    
+
     const [filteredTeams, setfilteredTeams] = useState(teams)
 
     const [form, setForm] = useState(
@@ -25,36 +25,84 @@ function Form() {
     useEffect(() => { dispatch(getAllTeams()) }, [])
 
     useEffect(() => {
-      setfilteredTeams(teams)
+        setfilteredTeams(teams)
     }, [teams])
-    
+
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('form', form)
-        dispatch(createDriver(form))
-        setfilteredTeams(teams)
-        setForm({
-            forename: "",
-            surname: "",
-            team: [],
-            image: "",
-            description: "",
-            nationality: "",
-            birth_date: "",
-        })
+
+        const array = Object.keys(form).map((clave) => form[clave]);
+
+        if (array.some((value) => { value === "" })) {
+            return alert("there are unfilled fields")
+        }
+        console.log(array)
+        console.log(array.includes(""))
+        const infointheArray = array.filter((el) => el !== "")
+        if (infointheArray.length > 1) {
+            console.log('form.team', form.team)
+            if (form.team.length >= 1) {
+                dispatch(createDriver(form))
+                setfilteredTeams(teams)
+                setForm({
+                    forename: "",
+                    surname: "",
+                    team: [],
+                    image: "",
+                    description: "",
+                    nationality: "",
+                    birth_date: "",
+                })
+            } else {
+                alert("faltan campos por rellenar")
+            }
+        } else (
+            alert("No data to create driver,complete the fields")
+        )
     }
+
     const handleChange = (e) => {
-        e.preventDefault();
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value
-        })
+        e.preventDefault()
+
+        const onlyLetters = /^[a-zA-Z\s]*$/
+
+        if (e.target.name !== "description") {
+
+            if (e.target.value.length < 12 || e.target.type === "url") {
+
+                if (onlyLetters.test(e.target.value) || e.target.type === "date" || e.target.type === "url") {
+                    setForm({
+                        ...form,
+                        [e.target.name]: e.target.value
+                    })
+                } else if (!onlyLetters.test(e.target.value)) {
+                    alert("enter only letters (a-z)")
+
+                } else {
+                    return "enter dates is not valid"
+                }
+            } else {
+                alert(`${e.target.name} should be minor to 12 characters`)
+            }
+        } else if (e.target.name === "description") {
+
+            if (e.target.value.length < 60) {
+                setForm({
+                    ...form,
+                    [e.target.name]: e.target.value
+                })
+            } else {
+                alert(`${e.target.name} should be minor to 60 characters`)
+            }
+
+        }
     }
+
     const handleSelect = (e) => {
         const cleanedTeams = filteredTeams.filter((team) => team !== e.target.value)
-            setForm({
+        setForm({
             ...form,
             team: [...form.team, e.target.value]
         })
@@ -65,7 +113,7 @@ function Form() {
         event.preventDefault()
         console.log('event.target.value', event.target.value)
         const reFilteredTeams = form.team.filter((team) => team !== event.target.value)
-         filteredTeams.push(event.target.value)
+        filteredTeams.push(event.target.value)
         console.log('fixFilteredTeams', filteredTeams)
         setForm({
             ...form,
@@ -83,19 +131,19 @@ function Form() {
                     <label>forename:</label>
                     <input name="forename" type="text" value={form.forename} onChange={handleChange}></input>
                     <label>surname:</label>
-                    <input name="surname" type="text" onChange={handleChange}></input>
+                    <input name="surname" type="text" value={form.surname} onChange={handleChange}></input>
                     <label>Nationality:</label>
-                    <input name="nationality" type="text" onChange={handleChange}></input>
+                    <input name="nationality" type="text" value={form.nationality} onChange={handleChange}></input>
                     <label>birth date:</label>
-                    <input name="birth_date" type="date" onChange={handleChange}></input>
+                    <input name="birth_date" type="date" value={form.birth_date} onChange={handleChange}></input>
                     <label>Description:</label>
-                    <textarea name="description" onChange={handleChange}></textarea>
+                    <textarea name="description" value={form.description} onChange={handleChange}></textarea>
                     <label>Imagen:</label>
                     <input name="image" type="url" onChange={handleChange}></input>
-                     <select name="select" onChange={handleSelect}>
+                    <select name="select" onChange={handleSelect}>
                         <option key="sel" value="selected">select</option>
                         {filteredTeams.map((team, index) => {
-                            return (<option value={team} name={team}  key={team + index}>{team}</option>)
+                            return (<option value={team} name={team} key={team + index}>{team}</option>)
                         })}
                     </select>
                     {
