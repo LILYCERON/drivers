@@ -19,11 +19,11 @@ const postControllers = async (req, res) => {
                     birth_date)
             res.json(response)
         }else {
-        res.send("Uno de los datos ingresados no cumple las condiciones solicitadas")}
+        throw "Uno de los datos ingresados no cumple las condiciones solicitadas"}
 
         if(forename === "" || surname === "" || team === "" || birth_date === ""){
             
-            res.send("Algunos de los valores enviados son indefinidos")
+            throw "Algunos de los valores enviados son indefinidos"
         }
     } catch (error) {
         res.status(404).send(error)

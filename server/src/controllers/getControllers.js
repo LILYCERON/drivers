@@ -81,7 +81,7 @@ const getAllDrivers = async (req, res) => {
                     (obj.forename).toLowerCase().includes(searchName) || (obj.surname).toLowerCase().includes(searchName));
 
                 if (similarToSearch.length > 0) {
-                    res.send(similarToSearch.slice(0, 16))
+                    res.send(similarToSearch.slice(0, 15))
                 } else {
                     throw "No existen resultados para su busqueda"
                 }

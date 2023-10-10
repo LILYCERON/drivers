@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { inOrder, getAllTeams, getDriversName, getAllDrivers, getDriverFordate, getDriverByTeam } from "../../redux/actions";
 import { useEffect, useState } from "react";
-function Navbar() {
+function Navbar({pagination}) {
     const dispatch = useDispatch();
     const allDrivers = useSelector((state) => state.allDrivers)
     const date = useSelector((state) => state.date)
@@ -60,25 +60,31 @@ function Navbar() {
         const stringSearch = evento.target.value
 
         if (evento.target.value.length < 23) {
-
             const differentCharacters = stringSearch.match(/[^A-Za-z\s]/); //busca caracteres distintos a letras mayúsculas, minúsculas y espacios
 
             if (differentCharacters !== null) {
                 alert(`${differentCharacters} it is not permitted, enter only letters (a-z)`)
-                e.target.value= name
+                e.target.value = name
             }
             setName(stringSearch)
+            pagination(1)
 
-        }else{
+        } else {
             alert("your search must be less than 23 characters")
         }
     }
 
     const handleSearch = (event) => {
         event.preventDefault()
-        dispatch(getDriversName(name))
-        setName('')
-
+        if (name === "") {
+            alert("Input something please")
+        } else {
+            dispatch(getDriversName(name))
+            setName('')
+        }
+    }
+    const handleResetFilters = () => {
+        dispatch(getAllDrivers())
     }
 
 
@@ -118,6 +124,7 @@ function Navbar() {
                 </select>
             </main >
             <a href="/create">Crear Personaje</a>
+            <button type="button" onClick={handleResetFilters}>Reset</button>
         </div>
     )
 }

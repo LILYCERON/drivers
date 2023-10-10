@@ -42,14 +42,14 @@ function Form() {
         const infointheArray = array.filter((el) => el !== "")
         if (infointheArray.length > 1) {
             console.log('form.team', form.team)
-            if (form.team.length >= 1 && form.forename !== "" && form.birth_date !== "" ) {
+            if ((form.team.length >= 1) && (form.forename !== "") && (form.birth_date !== "") ) {
                 dispatch(createDriver(form))
                 setfilteredTeams(teams)
                 setForm({
                     forename: "",
                     surname: "",
                     team: [],
-                    image: "",
+                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXbjDADpg95dAE9nmG_8onYdgVfkeDySCqpJmNNy5GiUTa-LS8zTXgg3q4CM0XB3UicC8&usqp=CAU",
                     description: "",
                     nationality: "",
                     birth_date: "",
