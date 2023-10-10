@@ -6,7 +6,7 @@ import Card from "../Card/Card.component";
 import "./cards.style.css"
 
 function Cards({allDrivers}) {
-    console.log(allDrivers)
+   
     return (
         <div className="cards">
             {allDrivers.map((driver) => {

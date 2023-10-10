@@ -54,6 +54,7 @@ function Navbar({pagination}) {
         event.preventDefault()
         const dataToFilter = event.target.value
         dispatch(getDriverByTeam(dataToFilter))
+        pagination(1)
     }
 
     const changeInputSearch = (evento) => {

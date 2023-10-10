@@ -14,7 +14,7 @@ export const CREATE_DRIVER = "CREATE_DRIVER"
 export function getAllDrivers() {
     return async function (dispatch) {
         const response = await axios.get("http://localhost:3001/drivers");
-        console.log('response.data', response.data)
+    
         return dispatch({
             type: GET_ALL_DRIVERS,
             payload: response.data
@@ -75,9 +75,11 @@ export function createDriver(form) {
 }
 
 export function getDriverByTeam(teamFilter) {
+    console.log(teamFilter)
     return async function (dispatch) {
-        const response = await axios.get(`http://localhost:3001/driver`);
-        const teamsFilter = response.data.map((obj) => obj.teams === teamFilter)
+        const response = await axios(`http://localhost:3001/drivers`);
+        const teamsFilter = response.data.filter((obj) => (obj.teams !== undefined) && (obj.teams.includes(teamFilter))) 
+        console.log(teamsFilter)
         return dispatch({
             type: GET_DRIVER_BY_TEAM,
             payload: teamsFilter,
@@ -125,8 +127,8 @@ export function inOrder(value) {
             }
         } else if (value === "nacimiento") {
             const orderDate = response.data.sort((a, b) => {
-                const driverA = a.dob.toLowerCase().normalize("NFD"); // Convertir a minúsculas para asegurar la comparación insensible a mayúsculas
-                const driverB = b.dob.toLowerCase().normalize("NFD");
+                const driverA = a.birth_date.toLowerCase(); // Convertir a minúsculas para asegurar la comparación insensible a mayúsculas
+                const driverB = b.birth_date.toLowerCase();
                 if (driverA < driverB) {
                     return 1; // a debe aparecer antes que b
                 } else if (driverA > driverB) {
