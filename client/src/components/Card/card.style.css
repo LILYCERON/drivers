@@ -1,13 +1,40 @@
 .card{
+width: 200px;
 display:flex;
+align-items: center;
 flex-direction:column;
-color: blue;
+color:black;
 padding: 15px;
-margin: 25px;
-background-color: aliceblue;
+margin: 15px;
+border: solid 2px rgb(226, 89, 38);
+border-radius: 16px;
+font-style: oblique;
+cursor: pointer;
 }
 
-button{
-    background-color:blueviolet;
-    border-color: black;
+.card :hover{
+    padding: 5px;
+    background-color:  #fcff4f;
+}
+
+.btn-a {
+    border-color:rgb(226, 89, 38);
+    background-color:#fcff4f;
+}
+
+.image{
+    border-radius: 15px;
+    border-color: rgb(226, 89, 38);
+    border-style: double;
+}
+.card > button{
+    width: 150px;
+}
+.name{
+    margin:3px 0 7px 0;
+    font-weight: 700;
+}
+.p{
+    margin-top: 8px;
+    margin-bottom: 7px;
 }

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import Cards from "../../components/Cards/Cards.component";
 import Pagination from "../../components/pagination/pagination"
 import { getAllDrivers, getDriverByid, getAllTeams } from "../../redux/actions";
+import "./home.style.css"
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -25,11 +26,11 @@ const Home = () => {
   }, [])
 
   return (
-    <div className='home'>
-      <h2 className='home-title'>Mundo "Drivers"</h2>
+    <div >
+      <h2  className="h2"></h2>
       <div>
         <Navbar pagination={pagination} />
-        <div>
+        <div className="home">
           {allDrivers.length > 9 ? (
             <Pagination
               lengthAllDrivers={allDrivers.length}

@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { inOrder, getAllTeams, getDriversName, getAllDrivers, getDriverFordate, getDriverByTeam } from "../../redux/actions";
 import { useEffect, useState } from "react";
-function Navbar({pagination}) {
+import "./Navbar.style.css"
+function Navbar({ pagination }) {
     const dispatch = useDispatch();
     const allDrivers = useSelector((state) => state.allDrivers)
     const date = useSelector((state) => state.date)
@@ -90,32 +91,31 @@ function Navbar({pagination}) {
 
 
     return (
-        <div>
-            <form onSubmit={handleSearch}>
+        <div className="div">   
+            <form className="form" onSubmit={handleSearch}>
+                <a href="/" className="regresar">Regresar</a>
+                <a href="/create" className="crear">Crear Personaje</a>
                 <input value={name} id="inputSearch" type="text" name="search" onChange={changeInputSearch}></input>
                 <button type="submit">Buscar</button>
             </form>
-            <main>
-                <div className="checkbox-container">
-                    <h3>Filtrar por:</h3>
+            <main className="main">
+                <div>
+                    <h3 >Filtrar por:</h3>
+                </div>
                     <div className="input-checkbox" />
-                    <hr />
                     <input
                         type="checkbox" name="filtrar por" value="az" id="az" onChange={handleOnCheckbox} />
-                    <label for="az">A-Z</label>
-                </div>
+                    <label className="label" for="az"> A-Z </label>
                 <div className="input-checkbox">
                     <input type="checkbox" name="filtrar por" value="za" id="za" onChange={handleOnCheckbox} />
-                    <label for="za">Z-A</label>
+                    <label className="label" for="za"> Z-A </label>
                 </div>
-                <div className="input-checkbox">
+                <div>
                     <input type="checkbox" name="filtrar por" value="nacimiento" id="nacimiento" onChange={handleOnCheckbox} />
-                    <label for="nacimiento">Año de nacimiento</label>
+                    <label className="label" for="nacimiento">Año de nacimiento</label>
                 </div>
-                <input type="checkbox" name="filtrar por" value="Equipo" id="Equipo" onChange={handleOnCheckbox} />
-                <label for="Equipo">(Equipo)</label>
-                <select name="teams" value="teams" id="teams" onChange={onChangeFilterType}>
-
+                <label for="Team"> Team: </label>
+                <select name="teams" value="teams" id="teams" onChange={onChangeFilterType} >
                     {teams.map((team) => {
                         return (
                             <option key={team} value={team}>
@@ -124,8 +124,7 @@ function Navbar({pagination}) {
                     })}
                 </select>
             </main >
-            <a href="/create">Crear Personaje</a>
-            <button type="button" onClick={handleResetFilters}>Reset</button>
+            <button className="button" type="button" onClick={handleResetFilters}>Reset</button>
         </div>
     )
 }

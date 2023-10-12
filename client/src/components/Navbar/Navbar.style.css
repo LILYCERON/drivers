@@ -1,3 +1,110 @@
-nav{
-    background-color: aquamarine;
+form{
+    padding:3px 115px 3px ;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:flex-start;
+    background-color: #c5c5c5;
+    opacity:0.8;
+}
+
+form > input{
+    padding: 3px 50px;
+    margin: 10px 7px 0px 430px;
+    border-radius: 7px;
+    border-color: rgb(226, 89, 38);
+    background-color: black;
+    color: white;
+    font-size: medium;
+}
+
+form > a{
+    width: 13%;
+    font-size: 15px;
+    font-weight:600;
+    margin-top: 8px;
+    margin-right: 20px;
+    border-style: double;
+    border-color: rgb(226, 89, 38);
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+    white-space: nowrap;
+    border-radius: 20px;
+    padding: 4px 8px 4px 8px;
+    opacity: 2.5;
+}
+
+a:hover{
+    padding: 6px;
+    background-color:white;
+    text-decoration: underline;
+}
+
+form > button {
+    margin: 10px 0px 0px 0px;
+    padding: 5px 7px 3px 3px;
+    font-size:17px;
+    font-weight:bold;
+    font-style: oblique;
+    border-style: double;
+    border-color: rgb(226, 89, 38);
+    width: 10%;
+    background-color:white;
+    border-radius: 5px;
+    color:black;
+}
+
+div{
+    display: inline;
+}
+
+.main{
+    padding: 7px 294px 7px 294px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #c5c5c5;
+    opacity:0.8;
+    white-space:nowrap;
+    display: flex;
+    align-items: center;
+    font-style: oblique;
+    font-weight:bold;
+    font-size: 17px;
+}
+
+.main > div {
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    display:inline-flex;
+   align-items:center;
+}
+
+label{
+    margin: 5px;
+    padding-right: 10px;
+}
+
+.main > div > h3{
+    padding-right: 10px;
+    width: 55%;
+    white-space: nowrap;
+   
+}
+button{
+    font-size:15px;
+    font-weight:bold;
+    font-style: oblique;
+    border-color:#c5c5c5 ;
+    width: 2.5%;
+    background-color:white;
+    border-radius: 8px;
+    color:black;
+    opacity: 1.5;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-top: 5px;
+    border-width: 0.5px;
+}
+button:hover{
+    text-decoration: underline;
 }

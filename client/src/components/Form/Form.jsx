@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { createDriver, getAllTeams } from "../../redux/actions";
 import { useDispatch } from "react-redux";
+import "./form.style.css"
 
 
 function Form() {
@@ -122,11 +123,11 @@ function Form() {
 
 
     return (
-        <div>
+        <div  className="contenedor">
             {filteredTeams && <>
                 <a href="/home">Regresar al Home</a>
                 <h3>Ingresa los datos para tu personaje en este mundo</h3>
-                <form onSubmit={handleSubmit}>
+                <form  className="formulario" onSubmit={handleSubmit}>
                     <label>forename:</label>
                     <input name="forename" type="text" value={form.forename} onChange={handleChange}></input>
                     <label>surname:</label>

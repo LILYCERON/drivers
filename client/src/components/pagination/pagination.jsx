@@ -17,7 +17,7 @@ const Pagination = ({ lengthAllDrivers, driversPerPage, pagination }) => {
   }
   
   return (
-    <div >
+    <div className="div" >
       {pageNumbers.map((number) => (
         <button 
         className={page === number && "active"}

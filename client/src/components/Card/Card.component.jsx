@@ -1,14 +1,17 @@
+import { useNavigate } from 'react-router-dom';
 import './card.style.css';
 
 const Card = ({ id, name, image, teams, date}) => {
-
+    const navigate = useNavigate()
     return(
         <div key={id}  className="card">
-            <img src={`${image}`}  style={{ width: '100px', height: '120px' }}/>
-            <p>Nombre: {name}</p>
-            <p>Equipos: {teams}</p>
+            <div className='name'>{name}</div>
+            <img  className= "image" src={`${image}`}  style={{ width: '120px', height: '140px' }}/>
+            <ul  className='info'>
+            <p className='p'>Equipos: {teams}</p>
             <p>Nació: {date}</p>
-            <a href= {`/home/${id}`} props={id}>Detalle</a>
+            </ul>      
+            <button  className="btn-a"type='button' onClick={() => navigate(`/home/${id}`)}>Detalle</button>
         </div>
     )
 }

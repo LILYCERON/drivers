@@ -1,6 +1,6 @@
 import { Route, BrowserRouter, Routes } from 'react-router-dom'
 import Landing from "./pages/landing/Landig"
-import Detail from "./pages/Detail"
+import Detail from "./pages/detail/Detail"
 import Home from "./pages/Home/home"
 import Create from "./pages/create"
 import './App.css'

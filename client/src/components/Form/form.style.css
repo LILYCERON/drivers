@@ -1,0 +1,20 @@
+.formulario{
+    display: flex;
+    flex-wrap:wrap;
+    width: 97%;
+    background-color: aquamarine;
+    padding: 150px 40px 0px 0px;
+}
+
+.formulario > input{
+    padding: 3px 50px;
+    margin: 10px 7px 0px 430px;
+    border-radius: 7px;
+    border-color: rgb(226, 89, 38);
+    background-color: black;
+    color: white;
+    font-size: medium;
+}
+.formulario >label{
+   background-color: aquamarine;
+}
