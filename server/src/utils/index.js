@@ -22,7 +22,8 @@ const getInfoDB = async () => {
             description: parseDriver.description,
             image: parseDriver.image,
             birth_date: parseDriver.birth_date,
-            teams: parseDriver.teams.map((team) => team.name).join(', ')
+            teams: parseDriver.teams.map((team) => team.name).join(', '),
+            createdInDb: true
         })
     })
     return driverArrayDB
@@ -39,9 +40,10 @@ const getInfoApi = async () => {
                 surname: driver.name.surname,
                 nationality: driver.nationality,
                 description: driver.description,
-                image: driver.image.url,
+                image: driver.image.url || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXbjDADpg95dAE9nmG_8onYdgVfkeDySCqpJmNNy5GiUTa-LS8zTXgg3q4CM0XB3UicC8&usqp=CAU",
                 birth_date: driver.dob,
-                teams: driver.teams
+                teams: driver.teams,
+                createdInDb: false
             })
         })
         return infoDrivers

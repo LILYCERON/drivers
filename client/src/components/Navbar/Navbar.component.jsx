@@ -26,8 +26,7 @@ function Navbar({ pagination }) {
         if (e.target.checked) {
             if (e.target.value === "az") {
                 dispatch(inOrder(e.target.value))
-            }
-            if (e.target.value === "za") {
+            } else {
                 dispatch(inOrder(e.target.value))
             }
             if (e.target.value === "nacimiento") {
@@ -38,10 +37,9 @@ function Navbar({ pagination }) {
                 ...selectFilter,
                 [e.target.value]: e.target.checked
             })
-        }
-        if (!e.target.checked) {
+        } else {
             if (e.target.value === "az" || e.target.value === "za" || e.target.value === "nacimiento") {
-                dispatch(getAllDrivers())
+                dispatch(inOrder(e.target.value))
                 setSelectFilter({
                     ...selectFilter,
                     [e.target.value]: e.target.checked
@@ -87,33 +85,68 @@ function Navbar({ pagination }) {
     }
     const handleResetFilters = () => {
         dispatch(getAllDrivers())
+        pagination(1)
+    }
+    const handleOrder = (event) => {
+        
+        event.preventDefault()
+        dispatch(inOrder(event.target.value))
+        if (event.target.value === "todos") {
+            dispatch(getAllDrivers())
+        }
+        pagination(1)
+
     }
 
+    /* const handleOrderBirthDate = (event) => {
+        console.log('event.target.value', event.target.value)
+        event.preventDefault()
+        dispatch(inOrder(event.target.value))
+        if(event.target.value === "todos") {
+            dispatch(getAllDrivers())
+        }
+    } */
 
     return (
-        <div className="div">   
+        <div className="div">
             <form className="form" onSubmit={handleSearch}>
                 <a href="/" className="regresar">Regresar</a>
                 <a href="/create" className="crear">Crear Personaje</a>
                 <input value={name} id="inputSearch" type="text" name="search" onChange={changeInputSearch}></input>
                 <button type="submit">Buscar</button>
             </form>
-            <main className="main">
+            <main className="Nav">
                 <div>
                     <h3 >Filtrar por:</h3>
                 </div>
-                    <div className="input-checkbox" />
-                    <input
-                        type="checkbox" name="filtrar por" value="az" id="az" onChange={handleOnCheckbox} />
-                    <label className="label" for="az"> A-Z </label>
+                <select name="alphabetic" onChange={(event) => handleOrder(event)}>
+                    <option value="todos" selected>Alfabeto</option>
+                    <option value="az" >A - Z</option>
+                    <option value="za" >Z - A</option>
+                </select>
+
+                {/* <input
+                    type="checkbox" name="filtrar por" value="az" id="az" onChange={handleOnCheckbox} />
+                <label className="label" for="az"> A-Z </label>
                 <div className="input-checkbox">
                     <input type="checkbox" name="filtrar por" value="za" id="za" onChange={handleOnCheckbox} />
                     <label className="label" for="za"> Z-A </label>
-                </div>
-                <div>
+                </div> */}
+                <select name="birth_date" onChange={(event) => handleOrder(event)}>
+                    <option value="todos" selected>Nacimiento</option>
+                    <option value="asc" >Ascendente</option>
+                    <option value="desc" >Descendente</option>
+                </select>
+                {/* <div>
                     <input type="checkbox" name="filtrar por" value="nacimiento" id="nacimiento" onChange={handleOnCheckbox} />
                     <label className="label" for="nacimiento">Año de nacimiento</label>
-                </div>
+                </div> */}
+                <select name="source" onChange={(event) => handleOrder(event)}>
+                    <option value="todos" selected>Todos</option>
+                    <option value="api" >Api</option>
+                    <option value="db" >Db</option>
+                </select>
+
                 <label for="Team"> Team: </label>
                 <select name="teams" value="teams" id="teams" onChange={onChangeFilterType} >
                     {teams.map((team) => {

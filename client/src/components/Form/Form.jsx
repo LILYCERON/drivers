@@ -128,20 +128,20 @@ function Form() {
                 <a href="/home">Regresar al Home</a>
                 <h3>Ingresa los datos para tu personaje en este mundo</h3>
                 <form  className="formulario" onSubmit={handleSubmit}>
-                    <label>forename:</label>
+                    <label>Forename:</label>
                     <input name="forename" type="text" value={form.forename} onChange={handleChange}></input>
-                    <label>surname:</label>
+                    <label>Surname:</label>
                     <input name="surname" type="text" value={form.surname} onChange={handleChange}></input>
                     <label>Nationality:</label>
                     <input name="nationality" type="text" value={form.nationality} onChange={handleChange}></input>
-                    <label>birth date:</label>
+                    <label>Birth date:</label>
                     <input name="birth_date" type="date" value={form.birth_date} onChange={handleChange}></input>
                     <label>Description:</label>
                     <textarea name="description" value={form.description} onChange={handleChange}></textarea>
                     <label>Imagen:</label>
                     <input name="image" type="url" onChange={handleChange}></input>
                     <select name="select" onChange={handleSelect}>
-                        <option key="sel" value="selected">select</option>
+                        <option key="sel" value="selected">Select Team</option>
                         {filteredTeams.map((team, index) => {
                             return (<option value={team} name={team} key={team + index}>{team}</option>)
                         })}
