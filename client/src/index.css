@@ -1,17 +1,18 @@
-* {
-    margin: 0px;
-    font-family: Arial, Helvetica, sans-serif;
+body {
+    font-family: Helvetica;
     font-style: oblique;
+    margin: 0;
+    box-sizing: border-box;
 }
 
+button {
+    text-decoration: none ;
+}
 
 a {
-    font-size:20px;
-    width: 7%;
-    background-color:#fcff4f ;
-    padding: 12px;
-    margin: 275 px;
-    border-radius: 7px;
-    text-decoration: none;
-    color: black;
+    text-decoration: none ;
+}
+
+.debug {
+    border: solid 1px red;
 }

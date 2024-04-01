@@ -1,8 +1,11 @@
 .cards{
     display: flex;
     justify-content: center;
+    background-size: contain;
+    background-repeat: no-repeat;
     flex-direction: row;
     flex-wrap: wrap;
-    margin: 35px;
-    
+    width: 95%;
+    margin-top: 0.5rem;
+    margin-bottom: 3rem;
 }

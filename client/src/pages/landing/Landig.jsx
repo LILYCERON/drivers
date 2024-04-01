@@ -6,24 +6,23 @@ import React from 'react';
 function Landing() {
   const navigate = useNavigate()
   return (
-    <div className="div1">
-      <h1 className="h1">¡Bienvenido!</h1>
-      <div className="text-container">
-        <h2 className="h1">Has ingresado al mundo "Drivers"</h2>
-        <div className="div2">
-          <h5>El automovilismo ha sido una demostración del hombre por su pasión a la velocidad.</h5>
-          <h5>Descubre y disfruta todos los personajes en el mundo de la adrenalina</h5>
+    <>
+      <div className="div1">
+        <div style={{ width: '95%', marginTop: '0.5rem' }}>
+          <img width='180px' height='45px' src="src/utils/F1.webp" />
         </div>
-        <button type="button" onClick={() => navigate('/home')}>Iniciar</button>
+        <hr style={{ width: '96%', color:'black' }}></hr>
+        <div style={{ width: '80%', display: 'flex', flexDirection: 'column', paddingRight: '9rem', alignItems: 'center' }}>
+          <h1>Welcome!</h1>
+          <h2>you have arrived to the drivers world  </h2>
+          <h4>click on 'start' to browse our API</h4>
+          <button type="button" onClick={() => navigate('/home')}>Start</button>
+        </div>
+        <footer className="Footer">
+          <p>&copy; 2024 Driver Company</p>
+        </footer>
       </div>
-      <section className="Contact">
-        <p>Ponte en contacto con nosotros para obtener más información </p>
-        <a href="mailto:info@example.com">Enviar un correo electrónico</a>
-      </section>
-      <footer className="Footer">
-        <p>&copy; 2024 Driver Company</p>
-      </footer>
-    </div>
+    </>
   );
 }
 

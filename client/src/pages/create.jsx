@@ -1,10 +1,10 @@
 import React from "react";
 import Form from "../components/Form/Form";
 
-function create(){
+function Create(){
     return (
         <Form/>
     )
 }
 
-export default create
+export default Create

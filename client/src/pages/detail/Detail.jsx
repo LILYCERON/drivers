@@ -13,17 +13,29 @@ function Detail() {
 
     return (
         <div className="DetailCard">
-                <a className= "buttonD" href="/home">Regresar al Home</a>
-            {infoDriver.image ? <>
-                <img  className="image"src={`${infoDriver.image}` } style={{width:"300px", height:"300px"} }/>
-                <label>identificador: {infoDriver.id}</label>
-                <label>Nombre: {infoDriver.forename}</label>
-                <label>Alabelellido: {infoDriver.surname}</label>
-                <label>nacionalidad: {infoDriver.nationality}</label>
-                <label>nacimiento: {infoDriver.birth_date}</label>
-                <label>Equipo: {infoDriver.teams}</label>
-                <text>Descripción: {infoDriver.description}</text>
-            </> : <h1>Loading...</h1>}
+            <div style={{ display: "flex", flexDirection: 'row', alignItems:'flex-start', width:'90%', justifyContent:'space-between' }}>
+                <a href="/home">Go Home</a>
+                <img style={{ width: "180px", height: "45px"}} src="../src/utils/F1.webp" />
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'row', borderTop:'solid 0.5rem red', borderRadius:'2rem',paddingTop:'1rem'}}>
+                <div style={{margin:'1rem'}}>
+                    <label>Nationality: {infoDriver.nationality}</label>
+                    <hr></hr>
+                    <label>Born: {infoDriver.birth_date}</label>
+                    <hr></hr>
+                    <label>Teams: {infoDriver.teams}</label>
+                    <hr></hr>
+                    <text>Description: {infoDriver.description}</text>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyItems: 'center', width: '95%'}}>
+                    {infoDriver.image ? <>
+                        <img src={`${infoDriver.image}`} style={{ width: "300px", height: "300px", borderRadius: '10rem' }} />
+                    </> : <h1>Loading...</h1>}
+                    <label>Number Driver: {infoDriver.id}</label>
+                    <label>Name: {infoDriver.forename}</label>
+                    <label>Last Name: {infoDriver.surname}</label>
+                </div>
+            </div>
         </div>)
 }
 export default Detail;

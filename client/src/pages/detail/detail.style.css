@@ -1,22 +1,29 @@
-
-.DetailCard{
-    margin: 20px 20px 0px 20px;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    background-image: url("client/src/utils/cuadros.jpg");
-    background-size: cover;
-    background-color: #c5c5c5;
-
+.DetailCard {
+    display: flex;
+    flex-direction:column;
+    align-items:flex-start;
+    background-image: url('../../utils/Detail.jpg');
+    background-repeat: no-repeat;
+    background-size:cover;
+    height: 100vh;
 }
 
-.buttonD{
-    font-size: 17px;
+.DetailCard >div > a {
+    width: 7rem;
+    border-style: double;
+    color: black;
+    font-weight: bold;
+    border-radius: 10rem;
     text-align: center;
-   margin:25px 950px 0 0 ;
-   width: 15%;
-   padding: 5px;
-   border-radius: 18px;
-   border-style: double;
-   border-color: rgb(226, 89, 38) ;
+    border-color: rgba(36, 36, 33, 0.815);
+    background-color:white;
+}
+
+.DetailCard > div{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 3rem 1rem 3rem ;
+}
+.DetailCard > div >label{
+    margin-top: 0.2rem;
 }

@@ -1,110 +1,42 @@
-.form{
-    padding:3px 115px 3px ;
+.form {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items:flex-start;
+    justify-content: center;
     background-color: #c5c5c5;
-    opacity:0.8;
+    width: 100%;
 }
 
-.form > input{
-    padding: 3px 50px;
-    margin: 10px 7px 0px 430px;
+.form>input {
+    margin: 1rem 0.5rem 1rem 30rem;
+    padding: 0.2rem 0.6rem;
     border-radius: 7px;
-    border-color: rgb(226, 89, 38);
-    background-color: black;
-    color: white;
+    border-color: rgba(36, 36, 33, 0.815);
+    color: black;
     font-size: medium;
+    font-weight: bold;
+    font-style: oblique;
 }
 
-.form > a{
-    width: 13%;
-    font-size: 15px;
-    font-weight:600;
-    margin-top: 8px;
-    margin-right: 20px;
+.form>a {
+    width: 7rem;
+    margin: 1rem;
     border-style: double;
-    border-color: rgb(226, 89, 38);
-    font-family: Arial, Helvetica, sans-serif;
-    font-style: italic;
-    white-space: nowrap;
-    border-radius: 20px;
-    padding: 4px 8px 4px 8px;
-    opacity: 2.5;
-}
-
-.a:hover{
-    padding: 6px;
+    color: black;
+    font-weight: bold;
+    border-radius: 10rem;
+    text-align: center;
+    border-color: rgba(36, 36, 33, 0.815);
     background-color:white;
-    text-decoration: underline;
 }
 
-.form > button {
-    margin: 10px 0px 0px 0px;
-    padding: 5px 7px 3px 3px;
-    font-size:17px;
-    font-weight:bold;
+.form>button {
+    margin: 1rem 0 1rem 0;
+    width: 5%;
+    font-size: 1rem;
+    font-weight: bold;
     font-style: oblique;
-    border-style: double;
-    border-color: rgb(226, 89, 38);
-    width: 10%;
-    background-color:white;
-    border-radius: 5px;
-    color:black;
-}
-
-.div{
-    display: inline;
-}
-
-.Nav{
-    padding: 7px 294px 7px 294px;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #c5c5c5;
-    opacity:0.8;
-    white-space:nowrap;
-    display: flex;
-    align-items: center;
-    font-style: oblique;
-    font-weight:bold;
-    font-size: 17px;
-}
-
-.main > div {
-    font-size: 18px;
-    display: flex;
-    flex-direction: row;
-    display:inline-flex;
-   align-items:center;
-}
-
-label{
-    margin: 5px;
-    padding-right: 10px;
-}
-
-.main > div > h3{
-    padding-right: 10px;
-    width: 55%;
-    white-space: nowrap;
-   
-}
-button{
-    font-size:15px;
-    font-weight:bold;
-    font-style: oblique;
-    border-color:#c5c5c5 ;
-    width: 2.5%;
-    background-color:white;
-    border-radius: 8px;
-    color:black;
-    opacity: 1.5;
-    cursor: pointer;
-    margin-left: 5px;
-    margin-top: 5px;
-    border-width: 0.5px;
-}
-button:hover{
-    text-decoration: underline;
+    border-color: rgba(36, 36, 33, 0.815);
+    border-radius: 0.5rem;
+    border-width: 2px;
+    color: black;
 }

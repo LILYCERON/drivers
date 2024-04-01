@@ -39,11 +39,11 @@ function Form() {
         if (array.some((value) => { value === "" })) {
             return alert("there are unfilled fields")
         }
-    
+
         const infointheArray = array.filter((el) => el !== "")
         if (infointheArray.length > 1) {
             console.log('form.team', form.team)
-            if ((form.team.length >= 1) && (form.forename !== "") && (form.birth_date !== "") ) {
+            if ((form.team.length >= 1) && (form.forename !== "") && (form.birth_date !== "")) {
                 dispatch(createDriver(form))
                 setfilteredTeams(teams)
                 setForm({
@@ -123,23 +123,69 @@ function Form() {
 
 
     return (
-        <div  className="contenedor">
+        <div className="contenedor">
             {filteredTeams && <>
                 <a href="/home">Regresar al Home</a>
-                <h3>Ingresa los datos para tu personaje en este mundo</h3>
-                <form  className="formulario" onSubmit={handleSubmit}>
-                    <label>Forename:</label>
-                    <input name="forename" type="text" value={form.forename} onChange={handleChange}></input>
-                    <label>Surname:</label>
-                    <input name="surname" type="text" value={form.surname} onChange={handleChange}></input>
-                    <label>Nationality:</label>
-                    <input name="nationality" type="text" value={form.nationality} onChange={handleChange}></input>
-                    <label>Birth date:</label>
-                    <input name="birth_date" type="date" value={form.birth_date} onChange={handleChange}></input>
-                    <label>Description:</label>
-                    <textarea name="description" value={form.description} onChange={handleChange}></textarea>
-                    <label>Imagen:</label>
-                    <input name="image" type="url" onChange={handleChange}></input>
+                <form className="formulario" onSubmit={handleSubmit}>
+                    <h2>Enter your driver's information</h2>
+                    <div style={{margin:'2rem'}}>
+                        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', margin: '2rem' }}>
+                            <div >
+                                <label>Forename:</label>
+                                <input
+                                    className="inputForm"
+                                    name="forename"
+                                    type="text"
+                                    value={form.forename}
+                                    onChange={handleChange}>
+                                </input>
+                            </div>
+                            <div>
+                                <label>Surname:</label>
+                                <input
+                                    className="inputForm"
+                                    name="surname"
+                                    type="text"
+                                    value={form.surname}
+                                    onChange={handleChange}>
+                                </input>
+                            </div>
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', margin: '2rem' }}>
+                            <div>
+                                <label>Nationality:</label>
+                                <input
+                                    className="inputForm"
+                                    name="nationality"
+                                    type="text"
+                                    value={form.nationality}
+                                    onChange={handleChange}>
+                                </input>
+                            </div>
+                            <div>
+                                <label>Birth date:</label>
+                                <input
+                                    className="inputForm"
+                                    name="birth_date"
+                                    type="date"
+                                    value={form.birth_date}
+                                    onChange={handleChange}>
+                                </input>
+                            </div>
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column', justifyContent:'space-between', margin: '2rem' }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+                                <label>Description:</label>
+                                <input  className='inputForm' name="description" value={form.description} onChange={handleChange}>
+                                </input>
+                            </div>
+                            <div>
+                                <label>Imagen:</label>
+                                <input className="inputForm" name="image" type="url" onChange={handleChange}></input>
+                            </div>
+                        </div>
+                    </div>
+                    <div style={{paddingBottom:'1rem', height:'6%'}}>
                     <select name="select" onChange={handleSelect}>
                         <option key="sel" value="selected">Select Team</option>
                         {filteredTeams.map((team, index) => {
@@ -151,6 +197,7 @@ function Form() {
                             return (<p key={team + index + "1"}>{team} <button type="button" value={team} onClick={(e) => handleSelectedTeams(e)}>X</button> </p>)
                         })
                     }
+                    </div>
                     <button type="submit">Send Driver</button>
                 </form>
             </>}
