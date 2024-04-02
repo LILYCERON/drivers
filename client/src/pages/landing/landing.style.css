@@ -1,9 +1,9 @@
 .div1 {
     display: flex;
     flex-direction: column;
-    background-image: url("src/utils/retrato.jpg");
-    background-size: cover;
-    justify-content: center;
+    background-image: url("src/utils/Landing.webp");
+    background-size:cover;
+    background-position-y:3rem;
     align-items:center;
     padding-top: 0.5rem;
     width: 100%;
@@ -11,19 +11,16 @@
 
 .div1>div>h1 {
     display: flex;
-    justify-content: center;
-    font-size: 60px;
-    color: red;
-    opacity: 0.8;
+    justify-content:flex-end;
+    font-size: 40px;
+    color:black;
     font-style: oblique;
 }
 
 .div1>div>h2 {
     display: flex;
-    justify-content: center;
     font-size: 2rem;
-    color: red;
-    opacity: 0.8;
+    color:black;
     font-style: oblique;
 }
 
@@ -31,7 +28,7 @@
     display: flex;
     justify-content: center;
     font-size: 1rem;
-    color: red;
+    color:black;
     font-style: oblique;
 }
 
@@ -45,6 +42,7 @@
     color: white;
     font-style: oblique;
     border-radius: 1rem;
+    margin-top: 2rem;
 }
 
 .div1>footer {

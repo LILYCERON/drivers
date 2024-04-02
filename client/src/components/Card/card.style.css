@@ -1,29 +1,21 @@
 .card{
-width: 15rem;
+width: 16rem;
+height: 25rem;
 display:flex;
 flex-direction:column;
-align-items: center;
+box-sizing: content-box;
+align-items:center;
 justify-content:flex-start;
 color:black;
-padding: 0.5rem;
-margin: 1rem;
-border: solid 1px rgb(235, 111, 111) ;
-border-bottom: solid 0.3rem red;
-border-radius: 3rem;
+margin: 0.5rem;
+border: solid 2px rgb(5, 5, 5) ;
 font-style: oblique;
-cursor: pointer;
-}
-
-.image{ 
-    border-radius:10rem;
-    border-color: rgb(226, 38, 38);
-    border: solid 2px rgb(235, 111, 111) ;
 }
 .card > button{
     width:4rem;
+    cursor: pointer;
 }
 
 .name{
-    margin:3px 0 2px 0;
     font-weight: 700;
 }

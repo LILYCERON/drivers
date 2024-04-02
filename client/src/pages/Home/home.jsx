@@ -37,7 +37,7 @@ const Home = () => {
       <div style={{ width: '100%', paddingTop: '1rem' }}>
         <img style={{ marginLeft: '2rem' }} width='180px' height='45px' src="src/utils/F1.webp" />
       </div>
-      <hr style={{ width: '100%' }}></hr>
+      <hr style={{ width: '100%', marginBottom:0 }}></hr>
       <div style={{ backgroundColor: 'red', width: '100%' }}>
         <Navbar pagination={pagination} />
         <Filters />
@@ -50,12 +50,12 @@ const Home = () => {
           borderBlockEndWidth: '0.2rem',
           margin: '0.5rem',
           fontStyle: 'oblique',
-          borderColor: 'rgba(36, 36, 33, 0.815)',
+          borderColor: 'black',
           borderRadius: '0.5rem',
           fontWeight: 'bold'
         }}
         type="button"
-        onClick={handleResetFilters}>Reset</button>
+        onClick={handleResetFilters}>Reset Filters</button>
       <div style={{ display: 'flex', width: '77rem', justifyContent: 'flex-end' }}>
         {allDrivers.length > 9 ? (
           <Pagination

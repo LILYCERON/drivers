@@ -12,10 +12,10 @@ function Landing() {
           <img width='180px' height='45px' src="src/utils/F1.webp" />
         </div>
         <hr style={{ width: '96%', color:'black' }}></hr>
-        <div style={{ width: '80%', display: 'flex', flexDirection: 'column', paddingRight: '9rem', alignItems: 'center' }}>
-          <h1>Welcome!</h1>
-          <h2>you have arrived to the drivers world  </h2>
-          <h4>click on 'start' to browse our API</h4>
+        <div style={{ width: '80%', display: 'flex', flexDirection:'column', alignItems:'center', marginTop:'12rem', justifyItems:'stretch' }}>
+          <h1  style={{margin:'0'}}>Racing Drivers</h1>
+          <h4  style={{margin:'0'}}>you have arrived to the drivers world  </h4>
+          <h4 style={{margin:'0'}}>click on 'start' to browse our API</h4>
           <button type="button" onClick={() => navigate('/home')}>Start</button>
         </div>
         <footer className="Footer">

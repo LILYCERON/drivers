@@ -19,21 +19,23 @@ function Detail() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'row', borderTop:'solid 0.5rem red', borderRadius:'2rem',paddingTop:'1rem'}}>
                 <div style={{margin:'1rem'}}>
-                    <label>Nationality: {infoDriver.nationality}</label>
+                    <label style={{borderLeft:'solid 0.2rem green', paddingLeft:'0.5rem'}}>
+                        <strong>Nationality: </strong>{infoDriver.nationality}</label>
                     <hr></hr>
-                    <label>Born: {infoDriver.birth_date}</label>
+                    <label style={{borderLeft:'solid 0.2rem green', paddingLeft:'0.5rem'}}>
+                        <strong>Born: </strong>{infoDriver.birth_date}</label>
                     <hr></hr>
-                    <label>Teams: {infoDriver.teams}</label>
+                    <label style={{borderLeft:'solid 0.2rem green', paddingLeft:'0.5rem'}}> <strong>Teams: </strong> {infoDriver.teams}</label>
                     <hr></hr>
-                    <text>Description: {infoDriver.description}</text>
+                    <text><strong>Description: </strong>{infoDriver.description}</text>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyItems: 'center', width: '95%'}}>
                     {infoDriver.image ? <>
-                        <img src={`${infoDriver.image}`} style={{ width: "300px", height: "300px", borderRadius: '10rem' }} />
+                        <img src={`${infoDriver.image}`} style={{ width: "300px", height: "300px", borderRadius: '10rem', border:'solid 1px black' }} />
                     </> : <h1>Loading...</h1>}
-                    <label>Number Driver: {infoDriver.id}</label>
-                    <label>Name: {infoDriver.forename}</label>
-                    <label>Last Name: {infoDriver.surname}</label>
+                    <label><strong>Number Driver: </strong>{infoDriver.id}</label>
+                    <label><strong>Name: </strong>{infoDriver.forename}</label>
+                    <label><strong>Last Name: </strong>{infoDriver.surname}</label>
                 </div>
             </div>
         </div>)

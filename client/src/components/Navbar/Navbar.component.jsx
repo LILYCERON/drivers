@@ -36,10 +36,6 @@ function Navbar({ pagination }) {
                 setName('')
             }
     }
-    const handleResetFilters = () => {
-        dispatch(getAllDrivers())
-        pagination(1)
-    }
 
     return (
         <div style={{display:'flex', flexDirection:'column', alignItems:'center', marginLeft:'2rem', marginRight:'2rem'}}>
